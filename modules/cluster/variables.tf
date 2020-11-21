@@ -17,6 +17,12 @@ variable "cluster_network" {
   default     = "default"
 }
 
+variable "cluster_vpc_native" {
+  description = "Whether the cluster is created with VPC-native networking"
+  type        = bool
+  default     = false
+}
+
 variable "cluster_name" {
   description = "Name of the Kubernetes cluster"
   type        = string

@@ -73,7 +73,14 @@ resource "google_container_cluster" "jx_cluster" {
     workload_metadata_config {
       node_metadata = "GKE_METADATA_SERVER"
     }
+  }
 
+  dynamic "ip_allocation_policy" {
+    for_each = var.cluster_vpc_native ? [1] : []
+    content {
+      // An empty block configures the cluster with VPC-native networking.
+      // IP allocation subnets will be automatically assigned by GKE.
+    }
   }
 }
 
